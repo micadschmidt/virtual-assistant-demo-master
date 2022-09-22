@@ -1,0 +1,175 @@
+<div class="banner vh-100" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= asset_path 'background.jpg' %>)">
+  <div class="container flex-wrap ">
+    <div class="media-title py-3">
+      <h1>The N°1 <strong><span>Offer</span> <span>Marketplace</span></strong> </h1>
+    </div>
+    <h4 class="text-type">
+      <span class="text-type-js py-3" data-controller="typed-js"></span>
+    </h4>
+    <div class="py-3">
+      <%= link_to "See offers", offers_path, class:"btn btn-look btn-outline-light btn-banner-lg m-2"%>
+      <% if user_signed_in? == false %>
+      <%= link_to "Let's go!", new_user_registration_path, class: "btn btn-look btn-outline-light btn-banner-lg m-2" %>
+      <%#= link_to "Our Companies", companies_path, class: "btn btn-look btn-outline-light m-2" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<section class="section_one" style="background: #4b8b8585;">
+  <div><h2 class="pb-4" style="color: #fff; font-weight: 500; letter-spacing: 2px;">What our customers say</h2></div>
+  <div class="container pt-4">
+    <div id="carouselExampleIndicators" class="carousel slide carousel-dark pb-4" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% @comments.each_with_index do |comment, index| %>
+          <div class="carousel-item <%= index == 0 ? "active" : "" %> " data-bs-interval="3501">
+            <div class="row">
+              <div class="col-md-6 mx-auto">
+                <div class="card border border-0 m-0" style="max-width: 600px; height: 260px; box-shadow: 0 0 15px rgb(0 0 0 / 25%); border-radius: 4px;">
+                  <div class="row justify-content-center align-items-center" style="height: 260px;" >
+                    <div class="col-md-4 p-0">
+                      <%= cl_image_tag comment.assistant.photo.key, class:"img-fluid rounded-start h-100", style:"box-shadow: 0 0 15px rgb(0 0 0 / 25%); border-radius: 4px;", crop: :thumb, gravity: :face %>
+                    </div>
+                    <div class="col-md-8 m-0 p-0">
+                      <div class="card-body">
+                        <h5 class="card-title "><i class="text-muted fas fa-quote-left"></i> <%= comment.title %> <i class="text-muted fas fa-quote-right" ></i></h5>
+                        <p class="card-text text-muted"><i class="fas fa-regular fa-comment-dots" style="color:#FF385C"></i><br> <%= comment.content %></p>
+                        <p class="card-text text-muted "><% comment.rating.times do %><i class="fas fa-star" style="color:#FF385C"></i>
+                        <% end %>
+                        </p>
+                        <div>
+                          <p class="card-text"><small class="text-muted"><%= comment.name %></small></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <div><a class="btn btn-look btn-outline-light" style="margin-top: 40px;" href="/comments">See all reviews!</a></div>
+</section>
+
+<section class="section_one">
+  <div class="container">
+      <div class="text-center py-4">
+          <h3 class="section-heading text-uppercase py-3 m-0">Why work with us?</h3>
+          <h4 class=" text-muted py-3 m-0"></h4>
+      </div>
+      <div class="row text-center">
+          <div class="col-md-4">
+              <span class="fa-stack fa-4x">
+                  <i class="fas fa-circle fa-stack-2x text-color"></i>
+                  <i class="fas fa-desktop fa-stack-1x fa-inverse"></i>
+              </span>
+              <h4 class="m-0 py-4">Remote</h4>
+              <p class="text-muted m-0 py-3">Work from the confort of your home, with just a computer and an internet conection.</p>
+          </div>
+          <div class="col-md-4">
+              <span class="fa-stack fa-4x">
+                  <i class="fas fa-solid fa-circle fa-stack-2x text-color"></i>
+                  <i class="fas fa-globe fa-stack-1x fa-inverse"></i>
+              </span>
+              <h4 class="m-0 py-4">Worldwide</h4>
+              <p class="text-muted m-0 py-3">Dive into the international labor market, accessing a high paying salary.</p>
+          </div>
+          <div class="col-md-4">
+              <span class="fa-stack fa-4x">
+                  <i class="fas fa-circle fa-stack-2x text-color"></i>
+                  <i class="fas fa fa-handshake fa-stack-1x fa-inverse"></i>
+              </span>
+              <h4 class="m-0 py-4">Connect</h4>
+              <p class="text-muted m-0 py-3">Get in contact with high profile people from first class companies. This could be the first step of a new career path.</p>
+          </div>
+      </div>
+  </div>
+  <% if !user_signed_in? %>
+    <%= link_to "I want to start now!", new_user_registration_path, class: "btn btn-look btn-outline-light", id:"btn-pinki" %>
+  <% end %>
+</section>
+
+<section class="section_one" style="background-color:#e2000029">
+  <div class="">
+    <div class="container">
+        <h3 class="txt-center text-muted m-0 pb-4">Some of the companies we have been working with</h3>
+        <ul class="row align-items-center logos p-4">
+          <li class="col-xs-2 col-md-2 col-lg-2 logos-item py-2">
+            <img loading="lazy" src="//timeetc.b-cdn.net/assets/img/content/logos/google.png" alt="Google logo">
+          </li>
+          <li class="col-xs-2 col-md-2 col-lg-2 logos-item py-2">
+            <img loading="lazy" src="//timeetc.b-cdn.net/assets/img/content/logos/virgin.png" alt="Virgin logo">
+          </li>
+          <li class="col-xs-2 col-md-2 col-lg-2 logos-item py-2">
+            <img loading="lazy" src="//timeetc.b-cdn.net/assets/img/content/logos/hermanmiller.png" alt="Herman Miller logo">
+          </li>
+          <li class="col-xs-2 col-md-2 col-lg-2 logos-item py-2">
+            <img loading="lazy" src="//timeetc.b-cdn.net/assets/img/content/logos/facebook.png" alt="Facebook logo">
+          </li>
+          <li class="col-xs-2 col-md-2 col-lg-2 logos-item py-2">
+            <img loading="lazy" src="//timeetc.b-cdn.net/assets/img/content/logos/hubspot.png" alt="Hubspot logo">
+          </li>
+          <li class="col-xs-2 col-md-2 col-lg-2 logos-item py-2">
+            <img loading="lazy" src="//timeetc.b-cdn.net/assets/img/content/logos/kfc.png" alt="KFC logo">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section_one">
+  <div class="container" id="our_team">
+      <div class="text-center">
+          <h2 class="section-heading text-uppercase py-3 m-0">Our team</h2>
+          <h5 class="text-muted m-0 p-5">We are a group of technology enthusiasts, driven by a desire to help people. Here we saw the oportunity to create a win-win scenario by just connecting the right people together, so we just went for it.</h3>
+      </div>
+      <div class="row text-center d-flex justify-content-around">
+        <div class="card border-light rounded bg-light shadow-lg col-md-4 p-0 mx-0 my-4" style="width: 18rem;">
+          <div class="">
+            <img class="card-img-top" src="https://res.cloudinary.com/daa9wpodl/image/upload/v1662731268/mica_atpnzi.jpg" alt="Picture Micaela">
+          </div>
+          <div class="card-body py-5">
+            <h2 class="pb-3 m-0">Micaela</h4>
+              <p class="text-muted pb-3 m-0">CTO, Project manajer</p>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <div class="card border-light rounded bg-light shadow-lg col-md-4 p-0 mx-0 my-4" style="width: 18rem;">
+          <div class="">
+            <img class="card-img-top" src="https://res.cloudinary.com/daa9wpodl/image/upload/v1662730276/nacho_swegmd.jpg" alt="Picture Ignacio">
+          </div>
+          <div class="card-body py-5">
+            <h2 class="pb-3 m-0">Ignacio</h4>
+              <p class="text-muted pb-3 m-0">CEO, Co-Founder</p>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <div class="card border-light rounded bg-light shadow-lg col-md-4 p-0 mx-0 my-4" style="width: 18rem;">
+          <div class="">
+            <img class="card-img-top" src="https://scontent.flim28-1.fna.fbcdn.net/v/t1.18169-9/13164391_1746480048921497_7907818943914416325_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEx9YemH99E2wQAaBktFYizgMJA4GR43v-AwkDgZHje_6bab0fO18L8L67vRDHstDfZDZzhe7IKSJ_FCB9PeZS9&_nc_ohc=li-ggN0AaHsAX-Y0uTs&_nc_ht=scontent.flim28-1.fna&oh=00_AT-Z3EA8MITqkkbrG8KTXQoAbXPwjv-yMWgBLnqTQhm0gw&oe=633FEF88" alt="Picture Cédric">
+          </div>
+          <div class="card-body py-5">
+            <h2 class="pb-3 m-0">Cédric</h4>
+              <p class="text-muted pb-3 m-0">UI & UX design</p>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+<script type='text/javascript'></script>

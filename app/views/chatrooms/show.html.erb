@@ -1,0 +1,91 @@
+
+<div class="container chatroom" style="padding: 7rem 0"
+  data-controller="chatroom-subscription"
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+  data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-lg-12">
+        <div class="card chat-app shadow" style="height: 530px;">
+          <div id="plist" class="people-list">
+            <div style="border-bottom: solid grey 1px">
+              <h1>chats</h1>
+            </div>
+            <ul class="list-unstyled chat-list m-0">
+              <% if current_user.company != nil %>
+                <% chatrooms = @chatrooms.where(company: current_user.company) %>
+                <% chatrooms.each do |chatroom| %>
+                  <li class="clearfix">
+                    <%= cl_image_tag chatroom.assistant.photo.key, class:"avatar-square-shadow-xlg", crop: :thumb, gravity: :face %>
+                    <div class="about">
+                      <%= link_to chatroom.assistant.lastname , chatroom_path(chatroom), class:"name", style:"color: black"%>
+                      <p style="font-size: 9px; font-weight: bolder;"><%= chatroom.mensajes.count %> Messages</p>
+                    </div>
+                  </li>
+                <% end %>
+              <% else %>
+                <% chatrooms = @chatrooms.where(assistant: current_user.assistant) %>
+                <% chatrooms.each do |chatroom| %>
+                  <li class="clearfix" style="border-bottom: solid grey 1px">
+                    <%= cl_image_tag chatroom.company.photo.key, class:"avatar-square-shadow-xlg", crop: :thumb, gravity: :face %>
+                    <div class="about">
+                      <%= link_to chatroom.company.name, chatroom_path(chatroom), class:"name", style:"color: black" %>
+                      <p style="font-size: 9px; font-weight: bolder;"><%= chatroom.mensajes.count %> Messages</p>
+                    </div>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+          <div class="chat">
+            <div class="chat-header clearfix" style="padding: 10px; padding-left: 20px">
+              <div class="row ml-6">
+                <div class="col-lg-6">
+                  <% if current_user.type_of_user == 'Assistant' %>
+                    <%= cl_image_tag @chatroom.company.photo.key, class:"avatar-square-shadow-xlg", crop: :thumb, gravity: :face %>
+                      <div class="chat-about">
+                        <h6 style="margin: 0px"><%= @chatroom.company.name %></h6>
+                        <p style="font-size: 9px; font-weight: bolder;">Online</p>
+                      </div>
+                    <% else %>
+                    <%= cl_image_tag @chatroom.assistant.photo.key, class:"avatar-square-shadow-xlg", crop: :thumb, gravity: :face %>
+                    <div class="chat-about">
+                      <h6 style="margin: 0px"><%= @chatroom.assistant.firstname %></h6>
+                      <p style="font-size: 9px; font-weight: bolder;">Online</p>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="chat-history" style="height: 400px">
+              <div class="messages" data-chatroom-subscription-target="mensajes">
+                <% @chatroom.mensajes.each do |mensaje| %>
+                  <% @chatroom.company.user.username = @chatroom.company.name%>
+                  <% @chatroom.assistant.user.username = @chatroom.assistant.firstname%>
+                  <div class="message-row d-flex <%= mensaje.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+                    <div class="<%= mensaje.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+                      <%= render "mensajes/mensaje", mensaje: mensaje %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div class="rounded" style="margin-top: 10px; background-color: #80808017; padding-top: 10px; height: 61px; padding-left: 10px;">
+                <%= simple_form_for [@chatroom, @mensaje],
+                  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex justify-content-between" } do |f| %>
+                  <%= f.input :content,
+                    label: false,
+                    placeholder: "Message",
+                    wrapper_html: {class: "flex-grow-1"},
+                    input_html: {"data-chatroom-subscription-target": "inputs"}
+                  %>
+                  <%= f.submit "Send", class: "btn mb-3 mx-3", style:"background-color: #00A699; border: 1px solid #00A699; color: #fff" %>
+                  <%= link_to "Back", chatrooms_path, class: "btn btn-primary mb-3", style:"background-color: #00A699; border: 1px solid #00A699; color: #fff" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

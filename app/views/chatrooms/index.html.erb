@@ -1,0 +1,59 @@
+<%# companies chatroom %>
+<div class="container main" style="padding: 7rem 0;">
+<div class=""><h1 class="pt-4 text-center">Rooms</h1></div>
+  <div class="row py-4">
+    <% if current_user.company != nil %>
+        <% chatrooms = @chatrooms.where(company: current_user.company) %>
+        <% chatrooms.each do |chatroom| %>
+          <div class="card-product">
+            <%= cl_image_tag chatroom.assistant.photo.key, class:"avatar-square-shadow-xlg", crop: :thumb, gravity: :face %>
+            <div class="card-product-infos">
+                <h2><%= chatroom.assistant.firstname %> <%= chatroom.assistant.lastname %></h2>
+            </div>
+            <div>
+              <div>
+              <p><strong> Last message</strong></p>
+              </div>
+              <div>
+              <p><%= chatroom.mensajes.last.content if !chatroom.mensajes.last.nil? %></p>
+              </div>
+            </div>
+            <%= link_to "go to conversation", chatroom_path(chatroom), type: "button", class: "btn btn-soft profile-btn btn-sm" %>
+            <%= link_to "delete conversation", chatroom_path(chatroom), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, type: "button", class: "btn btn-soft text-icon icon-btn btn-sm" %>
+          </div>
+        <% end %>
+      </div>
+    <% elsif current_user.assistant != nil %>
+      <div class= "container">
+        <% chatrooms = @chatrooms.where(assistant: current_user.assistant) %>
+        <% chatrooms.each do |chatroom| %>
+        <div class="card-product">
+          <%= cl_image_tag chatroom.company.photo.key, class:"avatar-square-shadow-xlg", crop: :thumb, gravity: :face %>
+          <div >
+              <h2><%= chatroom.company.name %></h2>
+          </div>
+          <div>
+            <div>
+            <p><strong> Last message</strong></p>
+            </div>
+            <div>
+            <p><%= chatroom.mensajes.last.content %></p>
+            </div>
+          </div>
+          <%= link_to "go to conversation", chatroom_path(chatroom), type: "button", class: "btn btn-soft profile-btn btn-sm" %>
+          <%= link_to "delete conversation", chatroom_path(chatroom), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, type: "button", class: "btn btn-soft text-icon icon-btn btn-sm" %>
+        </div>
+      <% end %>
+    </div>
+    <% else %>
+      <div class= "container">
+        <h2>you have to complete your profile to access the chatroom</h2>
+        <% if current_user.type_of_user == company %>
+          <%= link_to "complete profile", new_company_path, type: "button", class: "btn btn-soft profile-btn btn-sm" %>
+        <% else %>
+          <%= link_to "complete profile", new_assistant_path, type: "button", class: "btn btn-soft profile-btn btn-sm" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

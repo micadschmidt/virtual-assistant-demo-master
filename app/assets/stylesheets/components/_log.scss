@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
+
+.container-log {
+  margin: 4rem 0 0 0;
+  // background-color: #F5F5F5;
+  padding: 20px 20px 20px 0;
+  // border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper-edit-assistant {
+  max-width: 450px!important;
+}
+.wrapper-chatroom {
+  max-width: 475px!important;
+  height: 350px!important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+}
+.wrapper-log, .wrapper-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 525px;
+  height: 550px!important;
+  border-radius: 25px;
+}
+.wrapper-profile {
+  height: 550px!important;
+}
+.text-area-profile {
+  height: 120px!important;
+}
+.wrapper-profile-assistant {
+  max-width: 550px;
+  margin: 0!important;
+}
+
+.simple-form {
+  display: flex;
+  flex-direction: column;
+  // width: 250px;
+  justify-content: space-around;
+}
+
+// .simple-form-registrer {
+  // width: 300px;
+// }
+
+.main-img {
+  background-image: url(https://res.cloudinary.com/daa9wpodl/image/upload/v1662577138/bg-sign_ruy0kf.jpg);
+  background-size: cover;
+  padding: 275px 150px;
+  border-radius: 25px;
+}
+@media (max-width: 750px) and (min-width: 650px) {
+  .main-img {
+    width: 240px;
+    height: 450px;
+    padding: 225px 125px;
+  }
+}
+@media (max-width: 649px) {
+  .main-img {
+    display: none;
+  }
+}
+
+h1 {
+  color: #00A699;
+  margin-bottom: 20px;
+}
+
+.wrapper p {
+  font-size: 0.75rem;
+  color: #00A699;
+  margin-bottom: 30px;
+}
+.pass-icon {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  // width: 250px;
+}
+.email, .password, #email, #password  {
+  height: 40px;
+  width: 250px;
+  border-radius: 15px;
+  padding: 15px 0;
+  text-align: center;
+  border: 1px solid #00A699;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.pass-icon img {
+  width: 25px;
+  position: absolute;
+  align-self: center;
+  top: 27%;
+  right: 0;
+  margin-right: 10px;
+  filter: opacity(0.3);
+}
+.offer_tag {
+  margin: 0!important;
+}
+
+a {
+  text-decoration: none;
+  color: #00A699;
+  font-size: 0.75rem;
+  text-align: right;
+  margin-right: 15px;
+}
+
+// #password {
+//   margin-bottom: 15px;
+// }
+#assistant_description, #assistant_firstname, #assistant_lastname, #assistant_photo, #assistant_availability, .form-check #assistant_cv {
+  font-size: 14px;
+  font-weight: 500;
+}
+.form-check-input:checked {
+  background-color: #00A699!important;
+  border-color: #00A699!important;
+}
+.form-check-label, #assistant_description {
+  font-size: 12px;
+  font-weight: 500;
+  color: #00A699!important;
+}
+.form-check {
+  text-align: left;
+}
+
+#login-btn, #Sign-up-btn {
+  margin: 10px 0;
+  height: 40px;
+  border-radius: 15px;
+  border: none;
+  background-color: #00A699;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+span {
+  text-align: center;
+  position: relative;
+}
+
+.register {
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.register-btn {
+  height: 25px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid #00A699;
+  border-radius: 10px;
+  color: #00A699;
+  transition: 0.5s;
+  justify-content: center;
+}
+.register-btn:hover {
+  color: #00a69872!important;
+  border: 1px solid #00a69872!important;
+}
+.btn-look:hover {
+  color: #fff!important;
+  border: 1px solid #00a698!important;
+  background-color: #00a698!important;
+}
+.register p {
+  margin: 0 11px;
+}
+
+button:hover, #login-btn:hover, #Sign-up-btn:hover {
+  transform: scale(1.1);
+}
+.chat-profile-btn {
+  background-color: #00A699!important;
+  border: 1px solid #00A699!important;
+  color: #fff!important;
+  transition: 0.5s!important;
+}
+.icon-text {
+  color: #FF385C!important;
+  transition: 0.5s!important;
+}
+.profile-btn {
+  background-color: #00A699!important;
+  border: 1px solid #00A699!important;
+  color: #fff!important;
+  transition: 0.5s!important;
+}
+.profile-btn:hover {
+  opacity: .7;
+  background-color: #00A699!important;
+  border: 1px solid #00A699!important;
+  color: #fff!important;
+  transition: 0.5s!important;
+}
+.icon-btn {
+  background-color: #fff!important;
+  border: 1px solid #FF385C!important;
+  color: #FF385C!important;
+  transition: 0.5s!important;
+}
+.icon-btn:hover {
+  opacity: 1;
+  background-color: #FF385C!important;
+  border: 1px solid #FF385C!important;
+  color: #fff!important;
+  transition: 0.5s!important;
+}
+.fa-calendar-alt {
+  color: #00A699!important;
+  font-size: 24px!important;
+}
+.profile-icon-btn:hover {
+  opacity: .7;
+  background-color: #00A699!important;
+  border: 1px solid #00A699!important;
+  color: #fff!important;
+  transition: 0.5s!important;
+}

@@ -1,0 +1,30 @@
+<div class="container-log vh-100 ">
+  <div class="wrapper-log card shadow-lg mb-0 mx-3">
+    <%= simple_form_for(@company, html: { class: "simple-form simple-form-registrer"}) do |f| %>
+      <h1 class="py-3">Register your company</h1>
+      <%= f.error_notification %>
+      <div class="pass-icon w-100 px-4">
+        <%= f.input :name, placeholder: "What's the name of the company?", label: false, id:"email", input_html: { class: "w-100"} %>
+        <%= f.input :description, placeholder: "Tell us about your company", label: false, id:"email", input_html: { class: "w-100 text-area-profile"} %>
+        <%= f.input :photo, as: :file, placeholder: "add the logo of your company", id:"email", input_html: { class: "w-100"} %>
+        <%= f.button :submit, "Save changes", id:"Sign-up-btn", class: "text-center w-100" %>
+        <div class="register">
+          <%= link_to 'Back', companies_path(current_user.company), class:"register-btn" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%# <div class="container vh-100 mt-4">
+  <div class="row">
+    <div class="col-6 m-auto">
+      <div class="py-4">
+        <h1>Complete your registration</h1>
+        <div class="mt-4">
+          <%#= render "form", company: @company
+        </div>
+      </div>
+    </div>
+  </div>
+</div> %>

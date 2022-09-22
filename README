@@ -1,0 +1,18 @@
+# Virtual Assistant
+
+Virtual Assistant is a webpage that looks to match virtual assistants from latin america to Companies all around the world.
+
+
+
+## Usage
+
+You can create an account either as a company hiring or someone looking for a job.
+
+It has an integrated chat wich can be only started by companies
+
+The status of each application of an offer can be updated by the company who posted the offer, and after it is approved for an interview the calendar will automatically display showing available dates for it.
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.

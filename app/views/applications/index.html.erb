@@ -1,0 +1,98 @@
+<div class="container main py-5">
+  <div class="pt-5"><h1 class="py-4 text-center">My applications</h1></div>
+    <%# <div class="row pb-4">
+      <div class="col-12 ">
+      </div>
+    </div> %>
+    <div class="row pb-4">
+      <div class="col-12">
+        <div class="card d-flex justify-content-center align-items-cemter py-4 border rounded shadow-lg">
+          <div class="card-body">
+              <div class="card-content d-flex-inline justify-content-center align-items-cemter">
+                <%# <div class=""> %>
+                  <%# <div class=""> %>
+                      <table class="d-flex flex-column align-items-cemter">
+                        <thead class="d-flex justify-content-around align-items-center">
+                          <tr class="d-flex align-items-center justify-content-around flex-row" style="border-bottom: solid 1px #80808021; padding-bottom: 10px">
+                            <% if current_user.type_of_user == "Company" %>
+                              <th class="d-flex align-items-center justify-content-center child-two flex-col" scope="col">Applicant</th>
+                            <% else %>
+                              <th class="d-flex align-items-center justify-content-center child-two flex-col" scope="col">Company</th>
+                            <% end %>
+                            <th style="width: 500px;" class="d-flex align-items-center justify-content-center child-two flex-col" scope="col">Offer</th>
+                            <th class="d-flex align-items-center justify-content-center child-two flex-col" scope="col">Status</th>
+                            <th class="d-flex align-items-center justify-content-center child-two flex-col" scope="col">Actions</th>
+                          </tr>
+                        </thead>
+                        <% @applications.each do |application| %>
+                          <tbody class="d-flex justify-content-around align-items-center">
+                            <tr class="d-flex align-items-center justify-content-around flex-row" style="border-bottom: solid 1px #80808021;">
+                              <td class="d-flex align-items-center justify-content-center child-two flex-col">
+                                <div class="p-2">
+                                <% if current_user.type_of_user == "Company" %>
+                                  <span><%= application.assistant.firstname %> <%= application.assistant.lastname %></span>
+                                <% else %>
+                                  <span><%= application.company.name %></span>
+                                <% end %>
+                                </div>
+                              </td>
+                              <td class="d-flex align-items-center justify-content-start child-one flex-col" style="width: 500px;">
+                                <div class="p-2" >
+                                  <p style="margin-bottom: 0px"><%= application.offer.description %></p>
+                                </div>
+                              </td>
+                              <td class="d-flex align-items-center justify-content-center child-two flex-col">
+                                <div class="p-2">
+                                <% if application.status == "Interview" %>
+                                  <h6 class="mb-0"><span class="badge text-bg-primary"><%= application.status %></span></h6>
+                                <% elsif application.status == "Applied" %>
+                                  <h6 class="mb-0"><span class="badge text-bg-warning"><%= application.status %></span></h6>
+                                <% elsif application.status == "Pending" %>
+                                  <h6 class="mb-0"><span class="badge text-bg-secondary"><%= application.status %></span></h6>
+                                <% elsif application.status == "Accepted" %>
+                                  <h6 class="mb-0"><span class="badge text-bg-success"><%= application.status %></span></h6>
+                                <% else %>
+                                  <h6 class="mb-0"><span class="badge text-bg-danger"><%= application.status %></span></h6>
+                                <% end %>
+                              </td>
+                              <td class="d-flex align-items-center justify-content-center child-two flex-col">
+                                <div class="p-2">
+                                  <% if current_user.type_of_user == 'Company' %>
+                                  </div>
+                                    <%= link_to "", edit_application_path(application), class:"fas fa-check text-success" %>
+                                    <%= link_to "", application_path(application), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"fas fa-trash-alt text-danger" %>
+                                  <% elsif application.status == 'Interview' %>
+                                    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                                    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+                                    <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/ignaciozanotto/consulta-particular'});return false;"><i class="fas fa-calendar-alt icont-btn"></i></a>
+                                  <% else %>
+                                    <%= link_to "", application_path(application), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "card-link" %>
+                                  <% end %>
+                              </td>
+                            </tr>
+                          </tbody>
+                        <% end %>
+                      </table>
+                  <%# </div> %>
+                <%# </div> %>
+              </div>
+            <nav class="d-flex py-4 justify-content-center">
+              <ul class="pagination pagination-base pagination-boxed pagination-square mb-0">
+                <li class="page-item icon-text"><a class="page-link icon-text" href="#">
+                    <span aria-hidden="true"><</span>
+                  </a>
+                </li>
+                <li class="page-item icon-text"><a class="page-link icon-text" href="#">1</a></li>
+                <li class="page-item icon-text"><a class="page-link icon-text" href="#">2</a></li>
+                <li class="page-item icon-text"><a class="page-link icon-text" href="#">3</a></li>
+                <li class="page-item icon-text"><a class="page-link icon-text" href="#">
+                    <span aria-hidden="true">></span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<%= simple_form_for(@offer, html: { class: "simple-form simple-form-registrer"}) do |f| %>
+  <h1 class="py-3">Post a new job</h1>
+  <%= f.error_notification %>
+  <div class="pass-icon w-100 px-4">
+    <%= f.input :title, placeholder: "The title offer", label: false, id:"email", input_html: { class: "w-100"}  %>
+    <%= f.input :description, placeholder: "tell us about your company", label: false, id:"email", input_html: { class: "w-100 text-area-profile"} %>
+    <%= f.input :tag, as: :radio_buttons, collection: %i[Any Part-time Full-time], wrapper: :vertical_collection_inline, class: "text-center w-100" %>
+    <%= f.button :submit, id:"Sign-up-btn", class: "text-center w-100" %>
+    <div class="register">
+    <%= link_to 'Back', company_path(current_user.company), class:"register-btn" %>
+    </div>
+  </div>
+<% end %>

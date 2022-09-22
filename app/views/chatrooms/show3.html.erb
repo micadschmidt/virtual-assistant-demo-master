@@ -1,0 +1,40 @@
+<div class="container chatroom"
+  data-controller="chatroom-subscription"
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+  data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
+>
+  <div class="chat">
+    <% if current_user.type_of_user == 'Company' %>
+      <h3><%= @chatroom.assistant.firstname %></h3>
+    <% else %>
+      <h3><%= @chatroom.company.name %></h3>
+    <% end %>
+
+    <div class="messages" data-chatroom-subscription-target="mensajes">
+      <% @chatroom.mensajes.each do |mensaje| %>
+        <div class="message-row d-flex <%= mensaje.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+          <div class="<%= mensaje.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+            <%= render "mensajes/mensaje", mensaje: mensaje %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <%= simple_form_for [@chatroom, @mensaje],
+      html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex justify-content-between" } do |f|
+    %>
+      <%= f.input :content,
+        label: false,
+        placeholder: "Message ##{@chatroom.name}",
+        wrapper_html: {class: "flex-grow-1"},
+        input_html: {"data-chatroom-subscription-target": "inputs"}
+      %>
+      <%= f.submit "Send", class: "btn btn-primary mb-3 mx-3" %>
+      <% if !current_user.assistant.nil? %>
+        <%= link_to "back", assistant_path(@chatroom.assistant), class: "btn btn-primary mb-3" %>
+      <% else %>
+        <%= link_to "back", company_path(@chatroom.company), class: "btn btn-primary mb-3" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="container main py-4">
+  <div class="pt-5"><h1 class="pt-4 text-center">All offers</h1></div>
+  <div class="row pb-4">
+      <div class="col-12 ">
+        <div class="card border rounded bg-light shadow-lg mb-0 search-form">
+          <div class="card-body p-0">
+          <%= form_with url: offers_path, method: :get, id:"search-form", class: "d-flex" do %>
+            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find an offer by Tag: part-time, full-time, any OR by title" %>
+            <%= submit_tag "Search", class: "btn btn-soft profile-btn btn-sm" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row pb-4">
+      <div class="col-12">
+        <div class="card d-flex justify-content-center align-items-cemter m-0 border rounded shadow-lg">
+          <div class="card-body">
+              <div class="card-content d-flex-inline justify-content-center align-items-cemter">
+                  <%# <div class="table-responsive"> %>
+                  <table class="d-flex flex-column align-items-cemter">
+                    <thead class="d-flex justify-content-around align-items-center">
+                      <tr class="d-flex align-items-center justify-content-around flex-row">
+                        <th class="d-flex align-items-center justify-content-center child-three flex-col" scope="col"></th>
+                        <th class="d-flex align-items-center justify-content-center child-four flex-col" scope="col">Company</th>
+                        <th class="d-flex align-items-center justify-content-center child-four flex-col" scope="col">Status</th>
+                        <th class="d-flex align-items-center justify-content-center child-one flex-col" scope="col">Job offer</th>
+                        <th class="d-flex align-items-center justify-content-center child-two flex-col" scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <% @offers.each do |offer| %>
+                      <tbody class="d-flex justify-content-around align-items-center" style="border-top: 1px solid grey">
+                          <tr class="d-flex align-items-center justify-content-around flex-row">
+                            <td class="d-flex align-items-center justify-content-center child-three flex-col">
+                              <div class="p-2 m-0">
+                                <%= cl_image_tag offer.company.photo.key, class:"avatar-square-shadow-lg", crop: :thumb, gravity: :face %>
+                              </div>
+                          </td>
+                          <td class="d-flex align-items-center justify-content-center px-2 child-four flex-col">
+                            <div class="p-2">
+                              <span><%= offer.company.name %><span>
+                            </div>
+                          </td>
+                          <%# <td class="d-flex align-items-center justify-content-center child-two flex-col">
+                            <div class="p-2">
+                              <span class="text-muted time"> days ago</span>
+                            </div>
+                          </td> %><%#= (Time.now - offer.created_at).round %>
+                          <td class="d-flex align-items-center justify-content-center px-2 child-four flex-col">
+                            <div class="p-2">
+                              <p class="type m-0"><%= offer.tag %></p>
+                            </div>
+                          </td>
+                          <td class="d-flex align-items-center justify-content-center px-2 child-one flex-col">
+                            <div class="p-2">
+                                <i class="indicator bg-base"></i>
+                                <p><%= offer.title %></p>
+                            </div>
+                          </td>
+                          <td class="d-flex-inlne align-items-center justify-content-center px-2 child-two flex-col">
+                            <div class="p-2">
+                              <%= link_to "Apply", new_offer_application_path(offer), class:"btn profile-btn btn-sm w-50" %>
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                        </tbody>
+                      <% end %>
+                    </table>
+
+                  <%# </div> %>
+                <%# </div> %>
+              <%# </div> %>
+            </div>
+          </div>
+          <nav class="d-flex justify-content-center py-4">
+            <ul class="pagination pagination-base pagination-boxed pagination-square mb-0">
+              <li class="page-item icon-text"><a class="page-link icon-text" <%= link_to "<", offers_path(page: @page - 1) %> </li>
+              <li class="page-item icon-text"><a class="page-link icon-text" <%= link_to "1", offers_path %> </li>
+              <li class="page-item icon-text"><a class="page-link icon-text" <%= link_to "2", offers_path(page: 1) %> </li>
+              <li class="page-item icon-text"><a class="page-link icon-text" <%= link_to "3", offers_path(page: 2) %> </li>
+              <li class="page-item icon-text"><a class="page-link icon-text" <%= link_to ">", offers_path(page: @page + 1) %> </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

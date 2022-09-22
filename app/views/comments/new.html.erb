@@ -1,0 +1,19 @@
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container py-5  mt-5">
+    <div class="container">
+      <h2>Leave us your comment</h2>
+      <div class="row">
+        <div class="col-xs-4">
+          <%= simple_form_for [@comment] do |f| %>
+            <%= f.input :title, placeholder: "Describe your experience" %>
+            <%= f.input :content, placeholder: "What do you like about our service?" %>
+            <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
+            <%= f.input :name, placeholder: "Leave us your name" %>
+            <%= f.submit "Send your comment" %>
+          <% end %>
+        </div>
+      </div>
+      <h6>Thank your for trusting in us!</h6>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+  <div class="wrapper-offers">
+    <h2>Applications for this offer</h2>
+    <div class="service-cards">
+      <div class="service-card ux">
+        <div class="my-2 ">
+          <%= cl_image_tag @offer.company.photo.key, class:"avatar-square-shadow-m", crop: :thumb, gravity: :face %>
+          <h2><%= @offer.company.name %></h3>
+        </div>
+        <div class="my-2 ">
+          <h3><%= @offer.title %></h3>
+        </div>
+        <div class="my-2 ">
+          <p><%= @offer.description %></p>
+        </div>
+        <table class="table mb-0">
+          <tbody>
+            <% if @applications.empty? %>
+              <p>Nobody applied yet...</p>
+            <% else %>
+              <% @applications.each do |application| %>
+                <tr class="fw-normal">
+                  <td class="align-middle">
+                    <span><%= application.assistant.firstname %></span>
+                  </td>
+                  <td class="align-middle">
+                    <h6 class="mb-0"><span class="badge bg-success"><%= application.status %></span></h6>
+                  </td>
+                  <td class="align-middle">
+                    <a href="#!" data-mdb-toggle="tooltip" title="Done"><i
+                        class="fas fa-check text-success me-3"></i></a>
+                    <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i
+                        class="fas fa-trash-alt text-danger"></i></a>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        </ul>
+        <ul class="tags-ul">
+          <li class="tags mt-2">
+            <%= link_to 'Back', company_path, class:"card-link" %>
+          </li>
+          <li class="tags mt-2">
+            <%= link_to 'Edit', edit_offer_path(@offer), class:"card-link" %>
+          </li>
+          <li class="tags mt-2">
+            <%= link_to "Cancel", offer_path(@offer), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "card-link" %>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>

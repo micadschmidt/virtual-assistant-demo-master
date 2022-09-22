@@ -1,0 +1,85 @@
+<div class="container main pt-5">
+  <div class="pt-5"><h1 class="py-4 text-center">Dashboard of <%= @company.name %></h1>
+    <div class="row g-2">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card">
+          <div class="card-body text-muted border-0 rounded bg-light shadow-lg text-center">
+            <%= cl_image_tag @company.photo.key, class:"avatar-square-shadow-xlg", crop: :thumb, gravity: :face %>
+            <h5 class="py-2 m-0"><%= @company.name %></h5>
+            <div class="d-flex flex-column align-items-center justify-content-center ">
+              <%# if policy(@company).edit? %>
+                <%= link_to "Applications to Offers", applications_path, type: "button", class:"btn btn-soft profile-btn btn-sm mx-0 mt-2", style:"width: 70%;" %>
+                <%= link_to "Edit Profile", edit_company_path, type: "button", class:"btn btn-soft profile-btn btn-sm mx-0 mt-2", style:"width: 70%;" %>
+                <%= link_to "Post new Offer", new_offer_path, type: "button", class:"btn btn-soft profile-btn btn-sm mx-0 mt-2", style:"width: 70%;" %>
+                <%#= link_to "Cancel", assitant_path(@company), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+              <%# else %>
+                <%#= link_to "Chat", applications_path, type: "button", class:"btn btn-outline-primary ms-1" %>
+                <%#= link_to "My Applications", applications_path, type: "button", class:"btn btn-outline-primary ms-1" %>
+                <%#= link_to "Edit Profile", edit_company_path, type: "button", class:"btn btn-outline-primary ms-1" %>
+              <%# end %>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body border-0 rounded bg-light shadow-lg p-0">
+            <ul class="list-group list-group-flush rounded-3">
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fas fa-globe fa-lg text-warning"></i>
+                <p class="mb-0">https://yourcompany.com</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0"><%= @company.description %></p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-8">
+        <div class="card">
+          <div class="card-body border-0 rounded bg-light shadow-lg">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= @company.user.email %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= @company.user.phone %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><%= @company.user.address %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body border-0 rounded bg-light shadow-lg p-2">
+            <h5 class="text-center text-muted py-2">Your open Offers</h5>
+            <ul class="list-group list-group-flush rounded-3">
+              <% @offers.each do |offer| %>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="mdi mdi-briefcase-plus font-size-15 align-middle pe-2 icon-text"></i><p class="text-center p-2 m-0" style="font-size: .80rem;"><%= offer.title %></p>
+                  <p class="text-center p-2 m-0" style="font-size: .70rem;"><%= offer.description %></p>
+                  <p class="text-center p-2 m-0" style="font-size: .70rem;"><%= offer.tag %></p>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

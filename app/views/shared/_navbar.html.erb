@@ -1,0 +1,74 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark p-0">
+  <div class="container-fluid" style="padding-right: 3em;">
+    <div class="align-items-center" style="padding-left: 3em;">
+      <%= link_to root_path, class: "navbar-brand d-flex" do %>
+        <%= image_tag "favicon-32x32.png", class: "logo-v-a m-0 p-1" %>
+      <% end %>
+    </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse bg-dark rounded" id="navbarNav">
+      <ul class="navbar-nav ms-md-auto align-items-start p-2">
+        <% if user_signed_in? %>
+          <li><%= link_to "Home", root_path, class: "nav-item rounded nav-link active", "aria-current":"page" %></li>
+          <% if current_user.type_of_user == 'Company'%>
+            <li><%= link_to "All assistants", assistants_path,class: "nav-item rounded nav-link" %></li>
+            <% if current_user.company != nil %>
+              <% @chatroom = Chatroom.where(company: current_user.company).last %>
+              <li><%= link_to current_user.email, company_path(current_user.company.id),  class: "nav-link nav-item rounded"%></li>
+            <% else %>
+              <li><%= link_to current_user.email, new_company_path, class: "nav-link nav-item rounded"%></li>
+            <% end %>
+          <% else %>
+            <% @chatroom = Chatroom.where(assistant: current_user.assistant).last %>
+            <li><%= link_to "All offers", offers_path, class: "nav-item rounded nav-link" %></li>
+            <li><%= link_to "All companies", companies_path, class: "nav-item rounded nav-link" %></li>
+          <% end %>
+          <% if current_user.type_of_user == 'Company' && current_user.company != nil && current_user.company.photo.key != nil%>
+            <%= cl_image_tag current_user.company.photo.key, class: "avatar-square dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% elsif current_user.type_of_user == 'Assistant' && current_user.assistant != nil && current_user.assistant.photo.key != nil %>
+            <%= cl_image_tag current_user.assistant.photo.key, class: "avatar-square dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+            <%= image_tag "avatar-logout.png", class: "avatar-square dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <% if current_user.type_of_user == 'Company' && current_user.company != nil %>
+              <li><%= link_to "Dashboard", company_path(current_user.company.id),  class: "nav-item rounded dropdown-item"%></li>
+              <% if !@chatroom.nil? %>
+                <li><%= link_to "Messages", chatroom_path(@chatroom), class: "nav-item rounded dropdown-item" %></li>
+              <% end %>
+              <li><%= link_to "Post a job offer", new_offer_path, class: "nav-item rounded dropdown-item" %></li>
+              <li><%= link_to "See all companies", companies_path, class: "nav-item rounded dropdown-item" %></li>
+            <% elsif current_user.type_of_user == 'Assistant' && current_user.assistant != nil %>
+              <li><%= link_to "My Profile", assistant_path(current_user.assistant.id),  class: "nav-item rounded dropdown-item"%></li>
+              <li><%= link_to "My Applications", applications_path,  class: "nav-item rounded dropdown-item"%></li>
+              <% if !@chatroom.nil? %>
+                <li><%= link_to "Messages", chatroom_path(@chatroom), class: "nav-item rounded dropdown-item" %></li>
+              <% end %>
+            <% elsif current_user.type_of_user == 'Company'%>
+              <li><%= link_to "Complete Profile", new_company_path, class: "nav-item rounded dropdown-item" %></li>
+              <li><%= link_to "Post a job offer", new_company_path, class: "nav-item rounded dropdown-item" %></li>
+            <% elsif current_user.type_of_user == 'Assistant'%>
+              <li><%= link_to "Complete Profile", new_assistant_path, class: "nav-item rounded dropdown-item" %></li>
+            <% end %>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to "Edit account", edit_user_registration_path, class: "nav-item rounded dropdown-item" %></li>
+            <li><%#= link_to "Complete Profile", new_company_path, class: "nav-item rounded dropdown-item" %></li>
+            <%# <li><%= link_to "Messages", chatroom_path(1), class: "nav-item rounded dropdown-item" %></li>
+            <li><%= link_to "Log out", destroy_user_session_path, class: "nav-item rounded dropdown-item", data: {turbo_method: :delete} %></li>
+          </ul>
+        </li>
+
+        <% else %>
+          <li><%= link_to "Home", root_path, class: "nav-item rounded nav-link active", "aria-current":"page" %></li>
+          <li><%= link_to "Contact", "/", class: "nav-item rounded nav-link" %></li>
+          <li><%= link_to "Log In", new_user_session_path, class:"nav-item rounded nav-link" %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path, class:"nav-item rounded nav-link" %></li>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

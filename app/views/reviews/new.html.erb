@@ -1,0 +1,15 @@
+<div class="container-log vh-100 ">
+  <div class="wrapper-log card shadow-lg mb-0 mx-3">
+    <%= simple_form_for [@assistant, @review] do |f| %>
+      <h2 class="py-3">Write your review</h2>
+      <div class="pass-icon w-100 px-4">
+        <%= f.input :content %>
+        <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: {controller: "star-rating"}} %>
+        <%= f.submit "Send your review", id:"Sign-up-btn", class: "text-center w-100" %>
+      <div class="register">
+      <%= link_to 'Back', assistant_path(current_user.company), class:"register-btn" %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

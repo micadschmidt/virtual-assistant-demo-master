@@ -1,0 +1,49 @@
+.avatar-circle-new {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+.avatar-large {
+  width: 56px;
+  border-radius: 50%;
+}
+.avatar-md {
+  width: 40px;
+  background-size: cover;
+  border-radius: 50%;
+}
+.avatar-bordered {
+  width: 40px;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  border: white 1px solid;
+}
+.avatar-square {
+  width: 40px;
+  border-radius: 25%;
+}
+.avatar-square-shadow {
+  width: 40px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  border: white 1px solid;
+}
+.avatar-square-shadow-lg {
+  width: 56px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  border: white 1px solid;
+}
+.avatar-square-shadow-xlg {
+  width: 150px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  border: white 1px solid;
+}
+.avatar-square-shadow-m {
+  width: 70px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  border: white 1px solid;
+}

@@ -1,0 +1,126 @@
+.wrapper-offers {
+  width: 100%;
+  max-width: 1400px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Typography */
+h1 {
+  font-family: 'Lato', sans-serif;
+  font-size: 37px;
+  font-weight: bold;
+  line-height: 56px;
+  color: #3A3A3A;
+  margin: 0 0 10px 0;
+}
+
+h2 {
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 35px;
+  color: #707070;
+  margin: 0 0 10px 0;
+}
+
+h3 {
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 35px;
+  margin: 10px 0 0 0;
+  color: #707070;
+}
+
+p {
+  font-family: 'open-sans', sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 24px;
+  margin: 10px 0 0 0;
+  color: #707070;
+}
+
+/*Services*/
+#services {
+  text-align: center;
+  margin-top: 10%;
+}
+
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 1450px) {
+  .service-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .service-cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.service-card {
+    background-color: #F5F5F5;
+    box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.16);
+    padding: 40px 20px 40px 20px;
+    border-radius: 20px;
+}
+
+.service-card h3 {
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 35px;
+  margin: 10px 0 10px 0;
+  color: #707070;
+}
+
+.service-card p {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  text-align: justify;
+  font-weight: 400;
+  line-height: 35px;
+  letter-spacing: 1px;
+  margin: 10px 0;
+  padding: 10px 20px;
+  color: #707070;
+}
+
+.ux {
+  border-top: 28px solid #00A699;
+}
+
+.ui {
+  border-top: 28px solid #FF385C;
+}
+
+.tags-ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  align-items: center;
+}
+
+.tags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 25px;
+  padding: 5px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border: 1px solid #77bbff;
+  border-radius: 5px;
+  color: #2e70b1;
+}

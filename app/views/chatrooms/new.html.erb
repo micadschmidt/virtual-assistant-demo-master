@@ -1,0 +1,12 @@
+<div class="container-log vh-100 ">
+  <div class="wrapper-chatroom card rounded shadow-lg">
+    <h3 class="text-center text-muted p-4">do you want to iniciate a conversation with</h3> <h2><%= @assistant.firstname %>?</h2>
+    <%= simple_form_for [@assistant, @chatroom], html: { class: "simple-form simple-form-registrer"} do |f| %>
+      <%= f.input :assistant_id, as: :hidden, input_html: { value: @assistant.id }, label: false, id:"email", input_html: { class: "w-100 text-area-profile"} %>
+      <%= f.button :submit, "begin conversation", id:"Sign-up-btn", class: "pb-2 text-center w-100" %>
+    <% end %>
+    <div class="register">
+      <%= link_to 'Back', assistant_path(current_user), class:"pb-2 register-btn" %>
+    </div>
+  </div>
+</div>

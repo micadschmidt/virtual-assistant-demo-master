@@ -1,0 +1,21 @@
+<div class="container-log vh-100">
+  <div class="wrapper-chatroom card rounded shadow-lg" style="margin-top: -238px">
+    <div class="card-body">
+      <div class="d-flex justify-content-around align-items-cemter py-2">
+        <div><%= cl_image_tag @offer.company.photo.key, class:"avatar-md rounded-circle", crop: :thumb, gravity: :face %></div>
+        <div class="d-flex flex-column justify-content-around align-items-cemter">
+          <h2 class="font-size-16 m-0 py-2"><%= @offer.company.name %>
+          </h2>
+          <span class="badge badge-soft-success mb-0"> <%= @offer.tag %></span>
+        </div>
+      </div>
+      <div class="d-flex flex-column align-items-center py-2">
+        <p class="text-center text-muted"><strong><%= @offer.title %></strong></p>
+        <p class="text-muted py-1 mb-0"><%= @offer.description %></p>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div><%= render "form", application: @application %></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+// Specific CSS for your home-page
+.section_one {
+  padding: 6rem 0;
+  text-align: center;
+}
+.section_one h2.section-heading, .section_one .section-heading.h2 {
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.section_one h3.section-subheading, .section_one .section-subheading.h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  margin-bottom: 4rem;
+}
+.text-muted {
+  --bs-text-opacity: 1;
+  color: #6c757d !important;
+}
+@media (min-width: 768px) {
+  section {
+    padding: 9rem 0;
+  }
+}
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+.img-brand {
+  height: 2.75rem;
+}
+.d-block {
+  display: block !important;
+}
+.mx-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+#our_team {
+
+  .fab {
+    font-size: 16px;
+    color: #16be8d;
+    margin-top: 5px;
+  }
+  }

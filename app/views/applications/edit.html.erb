@@ -1,0 +1,15 @@
+<div class="container-log vh-100">
+  <div class="wrapper-log card shadow-lg mb-0 mx-3">
+    <%= simple_form_for (@application) do |f| %>
+      <h2 class="py-3">Update status</h2>
+      <div class="pass-icon w-100 px-4">
+        <%= f.error_notification %>
+        <%= f.input :status, collection: %w[Applied Interview Pending Accepted Rejected], default: @application.status %>
+        <%= f.button :submit, class: "btn btn-soft profile-btn btn-sm my-2" %>
+      <div class="register my-2">
+      <%= link_to 'Back', assistant_path(current_user.company), class:"register-btn" %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
